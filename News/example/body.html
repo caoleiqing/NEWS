@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/jquery-1.12.1.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			nav {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			
+			.nav {
+				height: 40px;
+				overflow: hidden;
+				line-height: 26px;
+				text-align: center;
+			}
+			
+			nav a {
+				float: left;
+				height: 100%;
+				padding: 10px;
+			}
+		</style>
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+			$(function() {
+				var awidth = parseInt($(".nav a").css("width"));
+				var alength = $(".nav a").length;
+				var nwidth = awidth * alength
+				$(".nav").css({
+					width: nwidth
+				});
+				var curr;
+				var nav = $(".nav")
+				mui("nav").on("dragstart", ".nav", function() {
+					curr = parseInt(nav.css("marginLeft")) ? parseInt(nav.css("marginLeft")) : 0;
+				})
+				mui("nav").on("drag", ".nav", function(e) {
+					var x = e.detail.deltaX;
+					var left = curr + x;
+					if (left > 0) {
+						left = 0;
+					}
+					if (left < -(nav.width() - $(window).width())) {
+						left = -(nav.width() - $(window).width())
+					}
+					nav.css("marginLeft", left)
+				})
+			})
+			mui.plusReady(function() {
+				mui(".nav").on("tap", "a", function() {
+					var title = $(this).html();
+					var currurl = this.getAttribute("url");
+					var newWin = plus.webview.create("_www/local/list.html", "", {}, {
+						title: title,
+						url: currurl
+					})
+					newWin.setJsFile("_www/js/list_load.js")
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="mui-content" style="padding-bottom: 88px;">
+			<!--<nav>
+				<div class="nav">
+					<a href="javascript:;" url="../local/list.html">国内新闻</a>
+					<a href="javascript:;" url="../local/list.html">国际新闻</a>
+					<a href="javascript:;" url="../local/list.html">娱乐新闻</a>
+					<a href="javascript:;" url="../local/list.html">体育新闻</a>
+					<a href="javascript:;" url="../local/list.html">科技新闻</a>
+					<a href="javascript:;" url="../local/list.html">财经新闻</a>
+					<a href="javascript:;" url="../local/list.html">军事新闻</a>
+				</div>
+			</nav>-->
+			<div class="mui-slider">
+				<div class="mui-slider-group">
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../imgs/cbd.jpg">
+							<p class="mui-slider-title">文字说明1</p>
+						</a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../imgs/muwu.jpg">
+							<p class="mui-slider-title">文字说明2</p>
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+				</div>
+			</div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;" url="http://baidu.com">
+						<img class="mui-media-object mui-pull-right" src="../imgs/shuijiao.jpg">
+						<div class="mui-media-body">
+							幸福
+							<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;" url="http://baidu.com">
+						<img class="mui-media-object mui-pull-right" src="../imgs/yuantiao.jpg">
+						<div class="mui-media-body">
+							木屋
+							<p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;" url="http://baidu.com">
+						<img class="mui-media-object mui-pull-right" src="../imgs/cbd.jpg">
+						<div class="mui-media-body">
+							CBD
+							<p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-right" src="../imgs/shuijiao.jpg">
+						<div class="mui-media-body">
+							幸福
+							<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-right" src="../imgs/yuantiao.jpg">
+						<div class="mui-media-body">
+							木屋
+							<p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-right" src="../imgs/cbd.jpg">
+						<div class="mui-media-body">
+							CBD
+							<p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+
+		</div>
+	</body>
+
+</html>

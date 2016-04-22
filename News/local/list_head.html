@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+			mui.plusReady(function() {
+				var curr = plus.webview.currentWebview()
+				var title = curr.title
+				var url = curr.url
+				$("h1").html(title);
+				/*$("header").on("tap",".mui-action-back",function(){
+					curr.parent().close();
+				})*/
+				var mask = plus.webview.getWebviewById(url);
+				mui("header").on("tap", "#bars", function() {
+					var menu = plus.webview.create("_www/example/menu.html", "menu", {
+						width: "70%",
+						left: 0,
+						position: "absolute"
+					});
+					menu.show("slide-in-left");
+					mask.setStyle({
+						left: "70%",
+						mask: "rgba(0,0,0,0.8)"
+					})
+					mask.addEventListener("maskClick", function() {
+						menu.hide("slide-out-left");
+						mask.setStyle({
+							mask: "none",
+							left: "0"
+						})
+					})
+				})
+			})
+		</script>
+		<style>
+.mui-bar{
+			background: #DE3031;
+		}
+			.mui-bar a{
+				color:#fff;
+			}
+			.mui-bar h1{
+				color:#fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="javascript:;" class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" id="bars"></a>
+			<h1 class="mui-title"></h1>
+			<a class="mui-icon mui-icon-refreshempty mui-pull-right"></a>
+		</header>
+	</body>
+
+</html>

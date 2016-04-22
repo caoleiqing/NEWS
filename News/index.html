@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+    /*mui.plusReady(function(){
+    	mui.init({
+    		subpages:[{
+    			url:"_www/local/head.html",
+    			id:"head",
+    			styles:{
+    				height:"44px",
+    				top:0
+    			}
+    		},
+    		{
+    			url:"_www/local/foot.html",
+    			id:"foot",
+    			styles:{
+    				height:"44px",
+    				position:"dock",
+    				dock:"bottom",
+    				bottom:0
+    			}
+    		},
+    		{
+    			url:"_www/example/body.html",
+    			id:"body",
+    			styles:{
+    				position:"fixed",
+    				top:"44px",
+    				bounce:"vertical"
+    			}
+    		}]
+    	})
+    })*/
+    document.addEventListener("plusready",function(){
+    	var current=plus.webview.currentWebview();
+    	/*var head=plus.webview.create("_www/local/head.html","head",{height:"44px",top:0},{})
+    	var foot=plus.webview.create("_www/local/foot.html","foot",{height:"44px",position:"dock",dock:"bottom",bottom:0},{})
+    	var body=plus.webview.create("_www/example/body.html","body",{position:"fixed",top:"44px",bounce:"vertical"},{})*/
+    	var head=plus.webview.create("_www/local/head.html","head",{height:"44px"},{})
+    	var foot=plus.webview.create("_www/local/foot.html","foot",{height:"50px",position:"absolute",bottom:0,zindex:100},{})
+    	var body=plus.webview.create("_www/example/body.html","body",{position:"fixed",top:"44px",bounce:"vertical"},{})
+    	current.append(head);
+    	current.append(foot);    	
+    	
+    	body.addEventListener("loading",function(){
+    		plus.nativeUI.showWaiting( "等待", {modal:false} );
+    	})
+    	body.addEventListener("loaded",function(){
+    		setTimeout(function(){
+    			plus.nativeUI.closeWaiting();
+    			current.append(body);
+    		},1000)
+    	})
+
+    })
+    </script>
+</head>
+<body>
+</body>
+</html>
