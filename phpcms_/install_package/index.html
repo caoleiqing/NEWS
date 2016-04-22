@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<script src="http://localhost/phpcms_/install_package/statics/js/appjs/zepto.js"></script>
+	<script src="http://localhost/phpcms_/install_package/statics/js/appjs/mui.min.js"></script>
+	<link href="http://localhost/phpcms_/install_package/statics/css/appcss/mui.min.css" rel="stylesheet" />
+	<script type="text/javascript" charset="UTF-8">
+		mui.plusReady(function() {
+			mui(".sidebar").on("tap", "a", function() {
+				var title = $(this).html();
+				var currurl = this.getAttribute("url");
+				var newWin = plus.webview.create("currurl", "", {}, {
+					title: title,
+					url: currurl
+				})
+				newWin.setJsFile("http://localhost/phpcms_/install_package/statics/js/appjs/list_load.js")
+			})
+			mui(".top").on("tap", "a", function() {
+				/*var title = $(this).html();
+				 var currurl = this.getAttribute("url");*/
+				var newWin = plus.webview.create("_www/index.html", "", {}, {
+				})
+				newWin.show();
+			})
+		})
+	</script>
+	<style>
+		.sidebar,.top{
+			font-size: 18px;
+			-webkit-user-select: none;
+			background: #eee;
+			/*box-shadow: 3px 0 1px red inset;*/
+		}
+
+		.sidebar a {
+			display: block;
+			border-top: 1px solid #ddd;
+			padding: 5% 10%;
+			box-sizing: border-box;
+			width: 100%;
+			height: 10%;
+			color: #333;
+		}
+		.top a {
+			display: block;
+			border-top: 1px solid #ddd;
+			padding: 5% 10%;
+			box-sizing: border-box;
+			width: 100%;
+			height: 10%;
+			color: #333;
+		}
+
+		.sidebar a:active {
+			background: #000;
+			color: #eee;
+		}
+
+		.top a:nth-child(1) {
+			border: 0;
+			overflow: hidden;
+			padding: 6%;
+		}
+
+		.top span {
+			float: left;
+			line-height: 80px;
+			margin-right: 10px;
+		}
+
+		.top span:nth-child(1) {
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			text-align: center;
+			background: darkred;
+			color: #fff;
+		}
+	</style>
+</head>
+
+<body>
+<div class="top">
+	<a><span>新闻中心</span><span>所有栏目</span></a>
+	<a href="javascript:;" url="_www/index.html">主页</a>
+</div>
+<div class="sidebar">
+			<a href="javascript:;" url="http://localhost/phpcms_/install_package/index.php?m=content&c=index&a=lists&catid=9">中国</a>
+		<a href="javascript:;" url="http://localhost/phpcms_/install_package/index.php?m=content&c=index&a=lists&catid=10">国际</a>
+		<a href="javascript:;" url="http://localhost/phpcms_/install_package/index.php?m=content&c=index&a=lists&catid=11">军事</a>
+		<a href="javascript:;" url="http://localhost/phpcms_/install_package/index.php?m=content&c=index&a=lists&catid=12">财经</a>
+		<a href="javascript:;" url="http://localhost/phpcms_/install_package/index.php?m=content&c=index&a=lists&catid=13">博览</a>
+		</div>
+</body>
+
+</html>
